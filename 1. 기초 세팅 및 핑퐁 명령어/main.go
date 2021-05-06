@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	Token   = "Nzc1MDA1OTYxMTYwMjI4ODg0.X6gCjA.gQGSiGOV7Yfntf1GLtwkZs-kq44"
+	Token   = "여기에 봇 토큰을 입력합니다"
 	Session *discordgo.Session
 )
 
