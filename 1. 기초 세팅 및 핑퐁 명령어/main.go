@@ -81,15 +81,4 @@ func messageCreate(session *discordgo.Session, message *discordgo.MessageCreate)
 	if message.Content == "!pong" {
 		session.ChannelMessageSend(message.ChannelID, "ping!")
 	}
-
-	// 그렇다면 아래 코드를 수정하여
-	// 메시지를 보낸 사람이 "자기 자신"인 경우,
-	// 봇이 "hello, (유저 닉네임#태그)"를 보내도록 해보세요.
-
-	// 메시지를 보낸 사람을 걸러내는 방법은 이미 67줄의 코드에서 설명하였습니다.
-	if message.Content == "" {
-		// 메시지를 보낸 사람의 '유저 닉네임#태그'를 불러오려는 경우
-		// message.Author.String()을 활용할 수 있습니다,
-		session.ChannelMessageSend(message.ChannelID, "")
-	}
 }
