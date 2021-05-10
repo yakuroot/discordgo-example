@@ -146,7 +146,7 @@ func messageCreate(session *discordgo.Session, message *discordgo.MessageCreate)
 	}
 
 	if message.Content == "!countdown" {
-		// ChannelMessageSend 함수 메시지를 보내는 역할 뿐만이 아닌, *Message 형식과 error 형식을 내보내는 역할도 합니다.
+		// ChannelMessageSend 함수는 메시지를 보내는 역할 뿐만이 아닌, *Message 형식과 error 형식을 내보내는 역할도 합니다.
 		// 즉, 아래와 같이 변수로 ChannelMessageSend 함수를 받아주게 되면
 		// 아래 msg 변수 내에는 봇이 전송한 메시지의 정보가 담기게 됩니다.
 		msg, _ := session.ChannelMessageSend(message.ChannelID, "3초 뒤 메시지가 삭제됩니다...")
