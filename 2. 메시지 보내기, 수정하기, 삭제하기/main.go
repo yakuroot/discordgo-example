@@ -46,6 +46,16 @@ func messageCreate(session *discordgo.Session, message *discordgo.MessageCreate)
 		return
 	}
 
+	if message.Content == "!dm" {
+		// 유저에게 DM(1:1 메시지)을 보내려면, 먼저 UserChannelCreate 함수를 통해 유저 채널 값을 얻어야 합니다.
+		// UserChannelCreate 함수는 *discordgo.Channel과 error 형식을 반환합니다.
+		userChannel, _ := session.UserChannelCreate(message.Author.ID)
+
+		// 유저 채널 값이 위에 선언한 변수 userChannel에 들어갔습니다.
+		// ChannelMessageSend의 첫 번째 매개 변수에는 채널 아이디를 넣어야 하므로, userChannel.ID를 넣어줍니다.
+		session.ChannelMessageSend(userChannel.ID, "hello, DM!")
+	}
+
 	if message.Content == "!hello" {
 		// ChannelMessageSendReply 함수는 디스코드의 '답장'기능을 봇이 사용할 수 있도록 하는 함수입니다.
 		// 첫 번째 매개 변수로는 메시지를 보낼 채널의 ID, 두 번째 매개 변수로는 보낼 메시지 내용을 입력해 줍니다.
