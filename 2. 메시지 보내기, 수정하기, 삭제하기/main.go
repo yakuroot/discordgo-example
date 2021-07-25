@@ -60,10 +60,10 @@ func messageCreate(session *discordgo.Session, message *discordgo.MessageCreate)
 		// ChannelMessageSendReply 함수는 디스코드의 '답장'기능을 봇이 사용할 수 있도록 하는 함수입니다.
 		// 첫 번째 매개 변수로는 메시지를 보낼 채널의 ID, 두 번째 매개 변수로는 보낼 메시지 내용을 입력해 줍니다.
 		// 그리고 세 번째 매개 변수로는 *discordgo.MessageReference 형식을 넣어주는데요.
-		// *discordgo.MessageReference 형식에는 MessageID, ChannelID, GuildID, 이렇게 3가지 항목이 있습니다.
+		// *discordgo.MessageReference 형식에는 문자열로 된 MessageID, ChannelID, GuildID, 이렇게 3가지 항목이 필요합니다.
 		// 지난 예제에서 매개 변수로 받아 온 message에는 수신된 메시지의 정보가 들어있다고 말씀 드렸던 것, 기억 나시나요?
-		// message.ID에는 메시지의 아이디, message.ChannelID에는 메시지가 수신된 채널의 아이디, message.GuildID에는 메시지가 수신된 서버의 아이디가 들어가 있습니다.
-		// 이 항목들을 차례대로 *discordgo.MessageReference 형식에 입력해 주면 됩니다.
+		// message.Reference() 매소드에는 *discordgo.MessageReference 형식을 그대로 반환하도록 만들어져 있어요.
+		// 이를 세 번째 매개 변수로 넘겨주면 끝이랍니다.
 
 		// message.Author.String()에는 메시지를 보낸 사람의 닉네임#0000(태그)이 들어있습니다.
 		session.ChannelMessageSendReply(message.ChannelID, "hello, "+message.Author.String(), message.Reference())
@@ -152,7 +152,7 @@ func messageCreate(session *discordgo.Session, message *discordgo.MessageCreate)
 	}
 
 	if message.Content == "!countdown" {
-		// ChannelMessageSend 함수는 메시지를 보내는 역할 뿐만이 아닌, *Message 형식과 error 형식을 내보내는 역할도 합니다.
+		// ChannelMessageSend 함수 메시지를 보내는 역할 뿐만이 아닌, *Message 형식과 error 형식을 내보내는 역할도 합니다.
 		// 즉, 아래와 같이 변수로 ChannelMessageSend 함수를 받아주게 되면
 		// 아래 msg 변수 내에는 봇이 전송한 메시지의 정보가 담기게 됩니다.
 		msg, _ := session.ChannelMessageSend(message.ChannelID, "3초 뒤 메시지가 삭제됩니다...")
