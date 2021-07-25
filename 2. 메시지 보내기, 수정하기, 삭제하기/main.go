@@ -66,11 +66,7 @@ func messageCreate(session *discordgo.Session, message *discordgo.MessageCreate)
 		// 이 항목들을 차례대로 *discordgo.MessageReference 형식에 입력해 주면 됩니다.
 
 		// message.Author.String()에는 메시지를 보낸 사람의 닉네임#0000(태그)이 들어있습니다.
-		session.ChannelMessageSendReply(message.ChannelID, "hello, "+message.Author.String(), &discordgo.MessageReference{
-			MessageID: message.ID,
-			ChannelID: message.ChannelID,
-			GuildID:   message.GuildID,
-		})
+		session.ChannelMessageSendReply(message.ChannelID, "hello, "+message.Author.String(), message.Reference())
 	}
 
 	if message.Content == "!embed" {
